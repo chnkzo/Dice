@@ -9,16 +9,21 @@ void setup()
 }
 void draw()
 {
+	total = 0;
 	background(50);
 	for(int r = 0;r <=400;r=r+100)
 	{
 		for(int c = 0;c <=300;c=c+100)
 		{
 			charles = new Die(r,c);
-			charles.roll();
 			charles.show();
+			total += charles.rNum;
+			rTotal = "" + total;
 		}
 	}
+	textSize(25);
+	textAlign(CENTER,BASELINE);
+	text("Total: " + rTotal,50,450);
 }
 void mousePressed()
 {
@@ -31,10 +36,11 @@ class Die //models one single dice cube
 	{
 		myX = x;
 		myY = y;
+		roll();
 	}
 	void roll()
 	{
-	int rNum = (int)(Math.random()*6)+ 1;
+	rNum = (int)(Math.random()*6)+ 1;
 	}
 	void show()
 	{
